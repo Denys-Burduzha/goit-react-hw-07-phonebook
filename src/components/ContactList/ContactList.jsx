@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import css from './ContactList.module.css';
-import { getContacts, deleteContact } from 'redux/contactsSlice';
+import { deleteContact } from 'redux/operations';
 import { useSelector, useDispatch } from 'react-redux';
+import { selectContacts } from 'redux/selectors';
+
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const filterValue = useSelector(state => state.filter.filter).toLowerCase();
 
   const onFilterChange = () => {
@@ -13,8 +15,8 @@ const ContactList = () => {
       contact.name.toLowerCase().includes(filterValue)
     );
   };
-  const onDeleteContact = id => {
-    dispatch(deleteContact(id));
+  const onDeleteContact = e => {
+    dispatch(deleteContact(e.target.id));
   };
 
   return (
@@ -22,14 +24,14 @@ const ContactList = () => {
       {onFilterChange().map(({ id, name, number }) => (
         <li className={css.item} key={id}>
           <p className={css.info}>
-            <span>{name} : </span> 
-            {number}
+            <span>{name} : 
+            </span>{number}
           </p>
           <button
             className={css.btn}
             type="button"
             id={id}
-            onClick={() => onDeleteContact(id)}
+            onClick={onDeleteContact}
           >
             Delete
           </button>
