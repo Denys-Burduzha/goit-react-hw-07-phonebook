@@ -4,7 +4,6 @@ import { Container } from './Container/Container';
 import  ContactForm  from './ContactForm/ContactForm';
 import  ContactList  from './ContactList/ContactList';
 import  Filter  from './Filter/Filter';
-// import { getContacts } from 'redux/contactsSlice';
 import  NoContactsMessage  from './NoContactsMessage/NoContactsMessage';
 import { selectIsLoading, selectError, selectContacts } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
